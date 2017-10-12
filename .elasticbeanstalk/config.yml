@@ -2,6 +2,10 @@ branch-defaults:
   master:
     environment: TODO-backend-dev
     group_suffix: null
+environment-defaults:
+  TODO-backend-dev:
+    branch: null
+    repository: null
 global:
   application_name: TODO-backend
   branch: null
