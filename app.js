@@ -29,7 +29,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/todoapp', function(req, res, next) {
-  res.sendFile('/public/todo/index.html', {root: __dirname});
+  res.sendFile('/todo/index.html', {root: __dirname});
 });
 
 // catch 404 and forward to error handler
