@@ -28,7 +28,7 @@ app.get('/', function(req, res, next) {
   res.render('index.njk');
 });
 
-app.get('/todo', function(req, res, next) {
+app.get('/todo-app', function(req, res, next) {
   res.sendFile(path.join(__dirname, '/public/todo/index.html'));
 });
 
