@@ -9,13 +9,13 @@ var index = require('./routes/index');
 
 var app = express();
 
-app.use(function(req, res, next) {
-    if((!req.secure) && (req.get('X-Forwarded-Proto') !== 'https')) {
-        res.redirect('https://' + req.get('Host') + req.url);
-    }
-    else
-        next();
-});
+// app.use(function(req, res, next) {
+//     if((!req.secure) && (req.get('X-Forwarded-Proto') !== 'https')) {
+//         res.redirect('https://' + req.get('Host') + req.url);
+//     }
+//     else
+//         next();
+// });
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
