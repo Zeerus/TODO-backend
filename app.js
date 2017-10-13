@@ -6,9 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
-var index = require('./routes/index');
-var todo = require('./routes/todo');
-
 var app = express();
 
 nunjucks.configure('views', {
@@ -24,8 +21,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/todo', todo)
+app.use('/', function(req, res, next) {
+  res.render('index.html');
+});
+
+app.use('/todo', function(req, res, next) {
+  res.sendFile(path.join(__dirname + '/public/todo/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
