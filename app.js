@@ -8,6 +8,11 @@ var nunjucks = require('nunjucks');
 
 var app = express();
 
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -17,16 +22,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
 
-nunjucks.configure('views', {
-    autoescape: true,
-    express: app
+
+
+app.get('/', function(req, res, next) {
+  res.render('index.njk');
 });
 
-app.use('/', function(req, res, next) {
-  res.render('index.html');
-});
-
-app.use('/todo', function(req, res, next) {
+app.get('/todo', function(req, res, next) {
   res.sendFile(path.join(__dirname + '/public/todo/index.html'));
 });
 
@@ -45,7 +47,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error.html');
+  res.render('error.njk');
 });
 
 module.exports = app;
