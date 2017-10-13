@@ -11,7 +11,10 @@ var todo = require('./routes/todo');
 
 var app = express();
 
-nunjucks.configure('views', {autoescape: true});
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
