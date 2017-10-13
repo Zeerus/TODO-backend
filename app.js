@@ -28,8 +28,8 @@ app.get('/', function(req, res, next) {
   res.render('index.njk');
 });
 
-app.get('/todo-app', function(req, res, next) {
-  res.sendFile(path.join('/public/todo/index.html'));
+app.get('/todoapp', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '/public/todo/index.html'));
 });
 
 // catch 404 and forward to error handler
