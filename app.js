@@ -8,11 +8,6 @@ var nunjucks = require('nunjucks');
 
 var app = express();
 
-nunjucks.configure('views', {
-    autoescape: true,
-    express: app
-});
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -21,6 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
+
+nunjucks.configure('views', {
+    autoescape: true,
+    express: app
+});
 
 app.use('/', function(req, res, next) {
   res.render('index.html');
