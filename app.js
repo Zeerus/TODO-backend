@@ -8,6 +8,7 @@ var nunjucks = require('nunjucks');
 
 var app = express();
 var index = require('./routes/index');
+var todo = require('./routes/todo');
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -27,14 +28,9 @@ app.set('view engine', 'html');
 //Api endpoint for todo app, since apparently statically served directories will
 //screw up /todo/api, and the root of todo needs to be statically served due to
 //react requiring its files and me not wanting to gut them into a separate public dir
-app.get('/todoapi', function(req, res, next) {
-        res.send('This will work');
-});
 
-app.use('/todo/', express.static(path.join(__dirname, 'todo')));
-app.get('/todo', function(req, res, next) {
-    res.sendFile('/todo/index.html', {root: __dirname});
-});
+app.use('/todoapp/', express.static(path.join(__dirname, 'todoapp')));
+app.use('/todo', todo);
 
 app.use('/', index);
 
