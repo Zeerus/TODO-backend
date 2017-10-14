@@ -25,12 +25,15 @@ app.set('view engine', 'html');
 
 
 app.get('/', function(req, res, next) {
-  res.render('index.njk');
+    res.render('index.njk');
 });
 
 app.use('/todo/', express.static(path.join(__dirname, 'todo')))
+app.get('/todo/api'), function(req, res, next) {
+    res.send('This will work');
+});
 app.get('/todo/*', function(req, res, next) {
-  res.sendFile('/todo/index.html', {root: __dirname});
+    res.sendFile('/todo/index.html', {root: __dirname});
 });
 
 // catch 404 and forward to error handler
@@ -42,13 +45,13 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error.njk');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error.njk');
 });
 
 module.exports = app;
