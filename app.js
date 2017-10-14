@@ -29,10 +29,18 @@ app.get('/', function(req, res, next) {
 });
 
 app.use('/todo/', express.static(path.join(__dirname, 'todo')))
-app.get('/todo/api/*', function(req, res, next) {
-    res.send('This will work');
-});
-app.get('/todo/*', function(req, res, next) {
+app.route('/todo/api')
+    .get(function(req, res, next) {
+        res.send('This will work');
+    })
+    .post(function(req, res, next) {
+        
+    })
+    .put(function(req, res, next) {
+
+    });
+
+app.get('/todo', function(req, res, next) {
     res.sendFile('/todo/index.html', {root: __dirname});
 });
 
