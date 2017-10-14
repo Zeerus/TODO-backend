@@ -8,6 +8,8 @@ var nunjucks = require('nunjucks');
 
 var app = express();
 
+var todo = require('/routes/todo');
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app
@@ -29,19 +31,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.use('/todo/', express.static(path.join(__dirname, 'todo')))
-app.get('/todo', function(req, res, next) {
-    res.sendFile('/todo/index.html', {root: __dirname});
-});
-app.route('/todo/api')
-    .get(function(req, res, next) {
-        res.send('This will work');
-    })
-    .post(function(req, res, next) {
-
-    })
-    .put(function(req, res, next) {
-
-    });
+app.use('/todo', todo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
