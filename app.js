@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
 var app = express();
-
-var todo = require('/routes/todo');
+var index = require('./routes/index');
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -25,13 +24,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
 
 
-
-app.get('/', function(req, res, next) {
-    res.render('index.njk');
+//Api endpoint for todo app, since apparently statically served directories will
+//screw up /todo/api, and the root of todo needs to be statically served due to
+//react requiring its files and me not wanting to gut them into a separate public dir
+app.get('/todoapi', function(req, res, next) {
+        res.send('This will work');
 });
 
-app.use('/todo/', express.static(path.join(__dirname, 'todo')))
-app.use('/todo', todo);
+app.use('/todo/', express.static(path.join(__dirname, 'todo')));
+app.get('/todo', function(req, res, next) {
+    res.sendFile('/todo/index.html', {root: __dirname});
+});
+
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
