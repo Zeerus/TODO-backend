@@ -29,7 +29,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.use('/todo/', express.static(path.join(__dirname, 'todo')))
-app.get('/todo/api/*'), function(req, res, next) {
+app.get('/todo/api/*', function(req, res, next) {
     res.send('This will work');
 });
 app.get('/todo/*', function(req, res, next) {
