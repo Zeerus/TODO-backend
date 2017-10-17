@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <div class="calculator-container">
+            <div class="calculator-screen">
+                <label id="upper-screen" class="upper-screen"></label>
+                <label id="lower-screen" class="lower-screen"></label>
+            </div>
+            <div class="memory-buttons">
+                <button type="button" name="memory-clear" id="memory-clear-button" disabled>MC</button>
+                <button type="button" name="memory-recall" id="memory-recall-button" disabled>MR</button>
+                <button type="button" name="memory-plus" id="memory-plus-button">M+</button>
+                <button type="button" name="memory-minus" id="memory-minus-button">M-</button>
+                <button type="button" name="memory-store" id="memory-store-button">MS</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="percent" id="percent-button">%</button>
+                <button type="button" name="sqrt" id="sqrt-button">√</button>
+                <button type="button" name="square" id="square-button" class="square-button">𝓧<sup class="super-script">2</sup></button>
+                <button type="button" name="inverse" id="inverse-button">1/𝓧</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="log" id="log-button">ln</button>
+                <button type="button" name="sin" id="sin-button">sin</button>
+                <button type="button" name="cos" id="cos-button">cos</button>
+                <button type="button" name="tan" id="tan-button">tan</button>
+            </div>
+            <div class="button-row row-adjust">
+                <button type="button" name="openpar" id="openpar-button">(</button>
+                <button type="button" name="closepar" id="closepar-button" disabled>)</button>
+                <button type="button" name="exponent" id="exponent-button" class="square-button">𝓧<sup class="super-script">y</sup></button>
+                <button type="button" name="factorial" id="factorial-button">n!</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="clear-recent" id="clear-recent-button">CE</button>
+                <button type="button" name="clear" id="clear-button">C</button>
+                <button type="button" name="backspace" id="backspace-button">⌫</button>
+                <button type="button" name="divide" id="divide-button">÷</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="seven" id="seven-button">7</button>
+                <button type="button" name="eight" id="eight-button">8</button>
+                <button type="button" name="nine" id="nine-button">9</button>
+                <button type="button" name="multiply" id="multiply-button">X</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="four" id="four-button">4</button>
+                <button type="button" name="five" id="five-button">5</button>
+                <button type="button" name="six" id="six-button">6</button>
+                <button type="button" name="sibtract" id="subtract-button">-</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="one" id="one-button">1</button>
+                <button type="button" name="two" id="two-button">2</button>
+                <button type="button" name="three" id="three-button">3</button>
+                <button type="button" name="plus" id="plus-button">+</button>
+            </div>
+            <div class="button-row">
+                <button type="button" name="negate" id="negate-button">±</button>
+                <button type="button" name="zero" id="zero-button">0</button>
+                <button type="button" name="period" id="period-button">.</button>
+                <button type="button" name="equals" id="equals-button">=</button>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="./js/calculator.js"></script>
+    </body>
+</html>
