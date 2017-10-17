@@ -147,21 +147,28 @@ document.getElementById('clear-button').onclick = function(){
 
 document.getElementById('backspace-button').onclick = function(){
     var numberString = currentValue.toString();
+
     if(numberString[numberString.length-1] === '.'){
+        //Adjust period based globals
         numPeriods -= 1;
     }
-    else if(numberString[numberString.length-1] === ')'){
-        unclosedParentheses++;
-        if(unclosedParentheses) document.getElementById('closepar-button').disabled = false;
-    }
-    else if(numberString[numberString.length-1] === '('){
-        unclosedParentheses--;
-        if(unclosedParentheses == 0) document.getElementById('closepar-button').disabled = true;
-    }
+
     var numberString = numberString.substring(0, numberString.length-1);
     if(numberString.length > 0){
     }
     else {
+        if(calculation[calculation.length-1] === ')'){
+            //Adjust Parentheses based values
+            unclosedParentheses++;
+            if(unclosedParentheses) document.getElementById('closepar-button').disabled = false;
+        }
+        else if(calculation[calculation.length-1] === '('){
+            //Adjust Parentheses based values
+            unclosedParentheses--;
+            if(unclosedParentheses == 0) document.getElementById('closepar-button').disabled = true;
+        }
+        //Lop off last item in calculation
+        calculation = calculation.slice(0, calculation.length -1);
         numberString = '0';
     }
 
@@ -171,7 +178,7 @@ document.getElementById('backspace-button').onclick = function(){
 
 function performOp(op){
     var lastCalcItem = calculation[calculation.length - 1];
-    if(lastCalcItem != ')'){
+    if(lastCalcItem != ')' && (typeof precedence[lastCalcItem]) !== 'undefined'){
         calculation.push(currentValue);
         currentValue = '0';
         numPeriods = 0;
@@ -273,16 +280,14 @@ function solveEquation(equation){
         var endIndex = null;
         found = false;
         for(var i = 0; i < equation.length; i++){
-            if(!found){
-                if(equation[i] == '('){
-                    if(parenthesesDepth == 0) startIndex = i;
-                    parenthesesDepth++;
-                    found = true;
-                } else if(equation[i] == ')'){
-                    parenthesesDepth--;
-                    if(parenthesesDepth == 0){
-                        endIndex = i;
-                    }
+            if(equation[i] == '('){
+                if(parenthesesDepth == 0) startIndex = i;
+                parenthesesDepth++;
+                found = true;
+            } else if(equation[i] == ')'){
+                parenthesesDepth--;
+                if(parenthesesDepth == 0){
+                    endIndex = i;
                 }
             }
         }
@@ -295,6 +300,7 @@ function solveEquation(equation){
             var equationBrackets = equation.slice(startIndex + 1, endIndex);
             var equationEnd = [];
             if(equation.length > endIndex) equationEnd = equation.slice(endIndex + 1);
+            console.log(equationBrackets);
             var term = solveEquation(equationBrackets);
             if(startIndex > 0 && (typeof precedence[equation[startIndex - 1]]) === 'undefined'){
                  equationStart.push('*');
