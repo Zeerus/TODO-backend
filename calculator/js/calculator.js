@@ -3,6 +3,7 @@ var currentValue = '0';
 var numPeriods = 0;
 var memory = null;
 var unclosedParentheses = 0;
+var justCalced = false;
 
 var upperScreen = document.getElementById('upper-screen');
 var lowerScreen = document.getElementById('lower-screen');
@@ -18,10 +19,10 @@ var precedence = {
 }
 
 function updateUI(){
-    //Check for period
     var screenData;
     var index;
-    var found = false
+    var found = false;
+    //Check for period
     for(var i = 0; i < currentValue.length; i++){
         if(currentValue[i] === '.'){
             index = i;
@@ -220,6 +221,10 @@ document.getElementById('openpar-button').onclick = (op) => addBracket('(');
 document.getElementById('closepar-button').onclick = (op) => addBracket(')');
 
 function inputHandler(input){
+    if(justCalced){
+        currentValue = '';
+        justCalced = false;
+    }
     if(input === '.'){
         if(numPeriods === 0){
             numPeriods += 1;
@@ -404,6 +409,7 @@ document.getElementById('equals-button').onclick = function(){
         calculation = [];
         unclosedParentheses = 0;
         if(parseFloat(currentValue) != parseInt(currentValue)) numPeriods = 1;
+        justCalced = true;
         updateUI();
     }
 }
