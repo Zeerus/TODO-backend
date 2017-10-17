@@ -153,10 +153,7 @@ document.getElementById('backspace-button').onclick = function(){
         numPeriods -= 1;
     }
 
-    var numberString = numberString.substring(0, numberString.length-1);
-    if(numberString.length > 0){
-    }
-    else {
+    if(numberString == '0'){
         if(calculation[calculation.length-1] === ')'){
             //Adjust Parentheses based values
             unclosedParentheses++;
@@ -169,6 +166,12 @@ document.getElementById('backspace-button').onclick = function(){
         }
         //Lop off last item in calculation
         calculation = calculation.slice(0, calculation.length -1);
+    }
+
+    var numberString = numberString.substring(0, numberString.length-1);
+    if(numberString.length > 0){
+    }
+    else {
         numberString = '0';
     }
 
