@@ -190,6 +190,11 @@ document.getElementById('exponent-button').onclick = (op) => performOp('^');
 function addBracket(type){
     switch(type){
         case '(':
+            if(currentValue != '0'){
+                calculation.push(currentValue);
+                currentValue = '0';
+                numPeriods = 0;
+            }
             calculation.push('(');
             unclosedParentheses++;
             document.getElementById('closepar-button').disabled = false;
