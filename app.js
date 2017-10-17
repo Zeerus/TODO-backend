@@ -10,6 +10,7 @@ var app = express();
 var index = require('./routes/index');
 var todo = require('./routes/todo');
 var calc = require('./routes/calc');
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app
@@ -33,7 +34,7 @@ app.use('/todoapp/', express.static(path.join(__dirname, 'todoapp')));
 app.use('/todo', todo);
 
 app.use('/calculator/', express.static(path.join(__dirnam, 'calculator')));
-app.use('calc', calc);
+app.use('/calc', calc);
 
 app.use('/', index);
 
