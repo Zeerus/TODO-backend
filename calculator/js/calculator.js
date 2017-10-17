@@ -178,7 +178,8 @@ document.getElementById('backspace-button').onclick = function(){
 
 function performOp(op){
     var lastCalcItem = calculation[calculation.length - 1];
-    if(lastCalcItem != ')' && (typeof precedence[lastCalcItem]) !== 'undefined'){
+    console.log(lastCalcItem);
+    if(lastCalcItem != ')' && (typeof precedence[lastCalcItem]) !== 'undefined' || calculation.length == 0){
         calculation.push(currentValue);
         currentValue = '0';
         numPeriods = 0;
