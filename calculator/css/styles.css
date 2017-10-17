@@ -71,12 +71,12 @@ button:disabled{
     color: #777;
 }
 
-button:hover{
+button:active{
     background: red;
     color: white;
 }
 
-button:disabled:hover{
+button:disabled:active{
     background: #DDD;
     color: #777;
 }
