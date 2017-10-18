@@ -24,7 +24,7 @@ function updateUI(){
     var found = false;
     //Check for period
     for(var i = 0; i < currentValue.length; i++){
-        if(currentValue[i] === '.'){
+        if(currentValue[i] == '.'){
             index = i;
             found = true;
             numPeriods = 1;
@@ -277,6 +277,15 @@ document.getElementById('zero-button').onclick = (input) => inputHandler('0');
 document.getElementById('period-button').onclick = (input) => inputHandler('.');
 
 function solveEquation(equation){
+    if(typeof equation == 'string'){
+        equation = equation.replace(/([()\*\/\+\-\^]{1})/gi, ' $1 ');
+        equation = equation.replace(/^\s/i , '');
+        equation = equation.replace(/\s$/i, '');
+        equation = equation.replace(/\s{2,}/gi, ' ');
+
+        equation = equation.split(' ');
+    }
+
     //Process brackets.
     do{
         var parenthesesDepth = 0;
@@ -410,8 +419,13 @@ function solveEquation(equation){
         }
     } while(found);
 
-    return equation;
-
+    var checkCaller = arguments.callee.caller.toString();
+    checkCaller = checkCaller.match(/^function\s{1}(\S+)\(/);
+    if(checkCaller && checkCaller[1] == 'solveEquation'){
+        return equation;
+    }else {
+        return equation[0]
+    }
 }
 
 document.getElementById('equals-button').onclick = function(){
@@ -420,7 +434,7 @@ document.getElementById('equals-button').onclick = function(){
     } else {
         var lastCalcItem = calculation[calculation.length - 1];
         if(lastCalcItem != ')') calculation.push(currentValue);
-        currentValue = solveEquation(calculation)[0];
+        currentValue = solveEquation(calculation).toString();
         calculation = [];
         unclosedParentheses = 0;
         if(parseFloat(currentValue) != parseInt(currentValue)) numPeriods = 1;
