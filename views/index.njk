@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-    </head>
-    <body>
-        <header>
-            <div class="">
+{% extends "master.njk" %}
 
-            </div>
-        </header>
-        <div class="">
-            <a href="/todo">TODO app</a>
-            <a href="/calc">Calculator</a>
-        </div>
-        <footer></footer>
-    </body>
-</html>
+{% block content %}
+    <a href="/todo">TODO app</a>
+    <a href="/calc">Calculator</a>
+{% endblock %}
