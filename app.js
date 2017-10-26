@@ -24,11 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
 
-
-//Api endpoint for todo app, since apparently statically served directories will
-//screw up /todo/api, and the root of todo needs to be statically served due to
-//react requiring its files and me not wanting to gut them into a separate public dir
-
 app.use('/todoapp/', express.static(path.join(__dirname, 'todoapp')));
 app.use('/todo', todo);
 
