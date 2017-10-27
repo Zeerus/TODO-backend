@@ -1,0 +1,28 @@
+body{
+    background: #222;
+}
+
+.site-wrapper{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.site-header{
+    background: black;
+    height: 100px;
+    padding: 30px;
+}
+
+.left-header{
+
+}
+
+.left-header a{
+    line-height: 100px;
+    font-size: 3em;
+    font-family: 'Open Sans', 'Sans Serif';
+    font-weight: 300;
+    text-decoration: none;
+    color: white;
+}

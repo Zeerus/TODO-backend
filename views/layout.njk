@@ -12,19 +12,25 @@
         {% endblock %}
     </head>
     <body id="body">
-        <header id="header">
-            {% block siteheader %}
+        <div class="site-wrapper">
+            <header id="header">
+                {% block siteheader %}
+                    <div class="site-header">
+                        <div class="left-header">
+                            <a href="/">Clayton Leach</a>
+                        </div>
+                    </div>
+                {% endblock %}
+            </header>
+            <div>
+                {% block content %}
+                {% endblock %}
+            </div>
+            <footer id="footer">
+                {% block footer %}
 
-            {% endblock %}
-        </header>
-        <div>
-            {% block content %}
-            {% endblock %}
+                {% endblock %}
+            </footer>
         </div>
-        <footer id="footer">
-            {% block footer %}
-
-            {% endblock %}
-        </footer>
     </body>
 </html>

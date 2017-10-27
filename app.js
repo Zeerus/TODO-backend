@@ -22,8 +22,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'html');
+
+app.use('/public/', express.static(path.join(__dirname, 'public')));
 
 app.use('/todoapp/', express.static(path.join(__dirname, 'todoapp')));
 app.use('/todo', todo);
